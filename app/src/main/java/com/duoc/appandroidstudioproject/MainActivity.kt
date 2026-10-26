@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.duoc.appandroidstudioproject.ui.theme.AppAndroidStudioProjectTheme
+import com.duoc.appandroidstudioproject.ui.theme.Login
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +39,31 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AppAndroidStudioProjectTheme {
-        Greeting("Android")
-    }
+fun setContent(function: Any) {
+    TODO("Not yet implemented")
 }
+
+annotation class BasicoTheme(val value: @Composable () -> Unit)
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+        BasicoTheme{ // <- aquí va el nombre de TU TEMA, lo puedes encontrar en ui/theme/Theme.kt
+            //GoogleMaps()
+            //Canciones(viewModelCanciones)
+            //Formulario(viewModelForm)
+            //BotonCargando()
+            //TextoInvertido()
+            //Persistencia()
+            //UsuarioFormScreen()
+            //Modal()
+            // Formulario()
+            Login()
+            //Navegacion()
+            //CamaraFotos()
+            //ModalScreen()
+            // GPS()
+            //AgregarUsuarios()
+            // TocarPantalla()
+        }
+    }
