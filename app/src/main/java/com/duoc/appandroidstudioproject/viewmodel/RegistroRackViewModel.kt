@@ -2,16 +2,14 @@ package com.duoc.appandroidstudioproject.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.duoc.appandroidstudioproject.model.RegistroRackErrores
-import com.duoc.appandroidstudioproject.model.RegistroRackModel
-import com.duoc.appandroidstudioproject.model.UsuarioErrores
-import com.duoc.appandroidstudioproject.model.UsuarioModel
+import com.duoc.appandroidstudioproject.model.RegistroRack
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
 class RegistroRackViewModel: ViewModel() {
-    private val _estado = MutableStateFlow(value= RegistroRackModel())
-    val estado:StateFlow<RegistroRackModel> = _estado
+    private val _estado = MutableStateFlow(value= RegistroRack())
+    val estado:StateFlow<RegistroRack> = _estado
 
     fun onDescripcionChange(valor:String) {
         _estado.update { it -> it.copy( descripcion = valor, errores = it.errores.copy(descripcion = null) ) }

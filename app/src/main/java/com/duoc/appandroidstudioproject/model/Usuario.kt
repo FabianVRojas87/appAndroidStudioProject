@@ -1,6 +1,6 @@
 package com.duoc.appandroidstudioproject.model
 
-data class UsuarioModel(
+data class Usuario(
     val nombre:String= "",
     val correo:String= "",
     val clave:String= "",

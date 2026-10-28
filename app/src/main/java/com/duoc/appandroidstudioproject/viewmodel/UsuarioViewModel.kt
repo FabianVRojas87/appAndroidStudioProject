@@ -2,14 +2,14 @@ package com.duoc.appandroidstudioproject.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.duoc.appandroidstudioproject.model.UsuarioErrores
-import com.duoc.appandroidstudioproject.model.UsuarioModel
+import com.duoc.appandroidstudioproject.model.Usuario
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
 class UsuarioViewModel: ViewModel() {
-    private val _estado = MutableStateFlow(value= UsuarioModel())
-    val estado:StateFlow<UsuarioModel> = _estado
+    private val _estado = MutableStateFlow(value= Usuario())
+    val estado:StateFlow<Usuario> = _estado
 
     fun onNombreChange(valor:String) {
         _estado.update { it -> it.copy( nombre = valor, errores = it.errores.copy(nombre = null) ) }

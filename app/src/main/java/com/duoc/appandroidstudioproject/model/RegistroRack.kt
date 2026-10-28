@@ -1,6 +1,6 @@
 package com.duoc.appandroidstudioproject.model
 
-data class RegistroRackModel(
+data class RegistroRack(
     val id:Int = 0,
     val descripcion:String = "",
     val esAprobado:Boolean = false,

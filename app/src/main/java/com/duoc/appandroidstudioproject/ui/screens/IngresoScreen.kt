@@ -23,6 +23,6 @@ fun IngresoScreen(
         horizontalAlignment= Alignment.CenterHorizontally,
         verticalArrangement= Arrangement.Center
     ) {
-        Text("Página Inicio")
+        Text("Página Ingreso")
     }
 }
