@@ -69,10 +69,10 @@ fun EspacioScaffold(
             "start_page" -> StartScreen(innerPadding)
             "ingreso_page" -> IngresoScreen(innerPadding)
             "camara_page" -> CamaraScreen(innerPadding)
-            "registros_page" -> RegistrosScreen(innerPadding)
+            "registros_page" -> RegistrosScreen(innerPadding, navigationFlowViewModel)
             "registros_historial_page" -> RegistrosHistorialScreen(innerPadding)
             "registros_editar_page" -> RegistrosEditarScreen(innerPadding)
-            "perfil_page" -> PerfilScreen(innerPadding)
+            "perfil_page" -> PerfilScreen(innerPadding, navigationFlowViewModel)
             "perfil_editar_page" -> PerfilEditarScreen(innerPadding)
             else -> Text("Preview")
         }

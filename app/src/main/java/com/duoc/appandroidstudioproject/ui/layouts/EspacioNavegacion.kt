@@ -38,10 +38,10 @@ fun EspacioNavegacion() {
 
     NavHost(
         navController= originalNavController,
-        startDestination= Screen.Start.route
+        startDestination= Screen.Login.route
     ) {
         composable(route= Screen.Login.route) {
-            LoginScreen()
+            LoginScreen(navigationFlowViewModel)
         }
         composable(route= Screen.Start.route) {
             EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.Start.route)
