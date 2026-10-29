@@ -11,10 +11,11 @@ import com.duoc.appandroidstudioproject.navigation.Screen
 import com.duoc.appandroidstudioproject.ui.screens.LoginScreen
 import com.duoc.appandroidstudioproject.ui.screens.StartScreen
 import com.duoc.appandroidstudioproject.viewmodel.NavigationFlowViewModel
+import com.duoc.appandroidstudioproject.viewmodel.RegistroRackViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun EspacioNavegacion() {
+fun EspacioNavegacion( tranRegistroRackViewModel:RegistroRackViewModel ) {
     val originalNavController = rememberNavController()
     val navigationFlowViewModel: NavigationFlowViewModel = viewModel()
 
@@ -44,28 +45,44 @@ fun EspacioNavegacion() {
             LoginScreen(navigationFlowViewModel)
         }
         composable(route= Screen.Start.route) {
-            EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.Start.route)
+            EspacioScaffold(
+                personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel, tranRegistroRackViewModel=tranRegistroRackViewModel, screenObjetivo=Screen.Start.route
+            )
         }
         composable(route= Screen.Ingreso.route) {
-            EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.Ingreso.route)
+            EspacioScaffold(
+                personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel, tranRegistroRackViewModel=tranRegistroRackViewModel, screenObjetivo=Screen.Ingreso.route
+            )
         }
         composable(route= Screen.Camara.route) {
-            EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.Camara.route)
+            EspacioScaffold(
+                personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel, tranRegistroRackViewModel=tranRegistroRackViewModel, screenObjetivo=Screen.Camara.route
+            )
         }
         composable(route= Screen.Registros.route) {
-            EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.Registros.route)
+            EspacioScaffold(
+                personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel, tranRegistroRackViewModel=tranRegistroRackViewModel, screenObjetivo=Screen.Registros.route
+            )
         }
         composable(route= Screen.RegistrosHistorial.route) {
-            EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.RegistrosHistorial.route)
+            EspacioScaffold(
+                personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel, tranRegistroRackViewModel=tranRegistroRackViewModel, screenObjetivo=Screen.RegistrosHistorial.route
+            )
         }
         composable(route= Screen.RegistrosEditar.route) {
-            EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.RegistrosEditar.route)
+            EspacioScaffold(
+                personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel, tranRegistroRackViewModel=tranRegistroRackViewModel, screenObjetivo=Screen.RegistrosEditar.route
+            )
         }
         composable(route= Screen.Perfil.route) {
-            EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.Perfil.route)
+            EspacioScaffold(
+                personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel, tranRegistroRackViewModel=tranRegistroRackViewModel, screenObjetivo=Screen.Perfil.route
+            )
         }
         composable(route= Screen.PerfilEditar.route) {
-            EspacioScaffold(originalNavController, navigationFlowViewModel, Screen.PerfilEditar.route)
+            EspacioScaffold(
+                personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel, tranRegistroRackViewModel=tranRegistroRackViewModel, screenObjetivo=Screen.PerfilEditar.route
+            )
         }
     }
 }

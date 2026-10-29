@@ -28,11 +28,13 @@ import com.duoc.appandroidstudioproject.ui.screens.RegistrosHistorialScreen
 import com.duoc.appandroidstudioproject.ui.screens.RegistrosScreen
 import com.duoc.appandroidstudioproject.ui.screens.StartScreen
 import com.duoc.appandroidstudioproject.viewmodel.NavigationFlowViewModel
+import com.duoc.appandroidstudioproject.viewmodel.RegistroRackViewModel
 
 @Composable
 fun EspacioScaffold(
     personalNavController: NavController,
     navigationFlowViewModel: NavigationFlowViewModel = viewModel(),
+    tranRegistroRackViewModel: RegistroRackViewModel,
     screenObjetivo: String
 ) {
     val itemsNavBar= listOf(Screen.Ingreso, Screen.Camara, Screen.Registros, Screen.Perfil);
@@ -67,7 +69,7 @@ fun EspacioScaffold(
     ) { innerPadding ->
         when(screenObjetivo) {
             "start_page" -> StartScreen(innerPadding)
-            "ingreso_page" -> IngresoScreen(innerPadding)
+            "ingreso_page" -> IngresoScreen(innerPadding, execRegistroRackViewModel = tranRegistroRackViewModel)
             "camara_page" -> CamaraScreen(innerPadding)
             "registros_page" -> RegistrosScreen(innerPadding, navigationFlowViewModel)
             "registros_historial_page" -> RegistrosHistorialScreen(innerPadding)
@@ -79,7 +81,7 @@ fun EspacioScaffold(
     }
 }
 
-
+/*
 @Preview(showBackground= true)
 @Composable
 fun EspacioScaffoldPreview() {
@@ -88,3 +90,4 @@ fun EspacioScaffoldPreview() {
     val screenObjetivo:String = "Preview";
     EspacioScaffold(personalNavController, navigationFlowViewModel, screenObjetivo)
 }
+ */

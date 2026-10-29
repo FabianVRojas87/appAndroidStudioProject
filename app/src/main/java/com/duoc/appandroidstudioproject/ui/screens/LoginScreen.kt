@@ -28,7 +28,7 @@ fun LoginScreen(
     ) {
         Text("Página Login")
         Button(
-            onClick = { navigationFlowViewModel.navigatePageTo(Screen.Ingreso) }
+            onClick = { navigationFlowViewModel.navigatePageTo(Screen.Start) }
         ) { Text("Correcto") }
         //Button( onClick = { Toast.makeText(this as Context?, "-Error-", Toast.LENGTH_SHORT).show() } ) { Text("Incorrecto") }
     }
