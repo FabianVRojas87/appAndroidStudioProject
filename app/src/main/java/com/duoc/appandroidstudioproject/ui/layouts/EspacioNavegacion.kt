@@ -46,7 +46,7 @@ fun EspacioNavegacion(
         startDestination= Screen.Login.route
     ) {
         composable(route= Screen.Login.route) {
-            LoginScreen(navigationFlowViewModel)
+            LoginScreen(personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel)
         }
         composable(route= Screen.Start.route) {
             EspacioScaffold(
