@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.duoc.appandroidstudioproject.navigation.NavigationEvent
 import com.duoc.appandroidstudioproject.navigation.Screen
 import com.duoc.appandroidstudioproject.ui.screens.LoginScreen
+import com.duoc.appandroidstudioproject.ui.screens.SplashScreen
 import com.duoc.appandroidstudioproject.ui.screens.StartScreen
 import com.duoc.appandroidstudioproject.viewmodel.NavigationFlowViewModel
 import com.duoc.appandroidstudioproject.viewmodel.RegistroRackViewModel
@@ -43,8 +44,19 @@ fun EspacioNavegacion(
 
     NavHost(
         navController= originalNavController,
-        startDestination= Screen.Login.route
+        startDestination= "splash_screen"
     ) {
+        composable(route = "splash_screen") {
+            SplashScreen(
+                onSplashFinished = {
+                    // Cuando terminen los 6 segundos, salta a la pantalla Start original
+                    originalNavController.navigate(Screen.Start.route) {
+                        // Esto borra el Splash de la memoria para que el usuario no pueda volver a él con el botón "Atrás"
+                        popUpTo("splash_screen") { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(route= Screen.Login.route) {
             LoginScreen(personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel)
         }
