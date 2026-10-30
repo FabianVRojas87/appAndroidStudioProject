@@ -50,7 +50,7 @@ fun EspacioNavegacion(
             SplashScreen(
                 onSplashFinished = {
                     // Cuando terminen los 6 segundos, salta a la pantalla Start original
-                    originalNavController.navigate(Screen.Start.route) {
+                    originalNavController.navigate(Screen.Login.route) {
                         // Esto borra el Splash de la memoria para que el usuario no pueda volver a él con el botón "Atrás"
                         popUpTo("splash_screen") { inclusive = true }
                     }
