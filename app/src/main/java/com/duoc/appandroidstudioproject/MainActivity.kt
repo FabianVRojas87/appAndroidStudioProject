@@ -14,10 +14,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.room.Room
 import com.duoc.appandroidstudioproject.model.AppDatabase
 import com.duoc.appandroidstudioproject.repository.RegistroRackRepository
+import com.duoc.appandroidstudioproject.repository.UsuarioRepository
 import com.duoc.appandroidstudioproject.ui.layouts.EspacioNavegacion
 import com.duoc.appandroidstudioproject.ui.theme.AppAndroidStudioProjectTheme
 import com.duoc.appandroidstudioproject.ui.theme.Login
 import com.duoc.appandroidstudioproject.viewmodel.RegistroRackViewModel
+import com.duoc.appandroidstudioproject.viewmodel.UsuarioViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -28,8 +30,10 @@ class MainActivity : ComponentActivity() {
             "infrascan_rack_db"
         ).build()
     }
-    private val reRaAppRepository by lazy { RegistroRackRepository(db.registroRackDao()) }
-    private val viewModelRegistrosRack by lazy { RegistroRackViewModel(reRaAppRepository) }
+    private val appRegistroRackRepository by lazy { RegistroRackRepository(db.registroRackDao()) }
+    private val viewModelRegistrosRack by lazy { RegistroRackViewModel(appRegistroRackRepository) }
+    //private val appUsuarioRepository by lazy { UsuarioRepository(db.usuarioDao()) }
+    //private val viewModelUsuario by lazy { UsuarioViewModel(appUsuarioRepository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,7 @@ class MainActivity : ComponentActivity() {
             AppAndroidStudioProjectTheme {
                 EspacioNavegacion(
                     tranRegistroRackViewModel = viewModelRegistrosRack
+                    //tranUsuarioViewModel = viewModelUsuario
                 )
             }
         }

@@ -29,12 +29,14 @@ import com.duoc.appandroidstudioproject.ui.screens.RegistrosScreen
 import com.duoc.appandroidstudioproject.ui.screens.StartScreen
 import com.duoc.appandroidstudioproject.viewmodel.NavigationFlowViewModel
 import com.duoc.appandroidstudioproject.viewmodel.RegistroRackViewModel
+import com.duoc.appandroidstudioproject.viewmodel.UsuarioViewModel
 
 @Composable
 fun EspacioScaffold(
     personalNavController: NavController,
     navigationFlowViewModel: NavigationFlowViewModel = viewModel(),
     tranRegistroRackViewModel: RegistroRackViewModel,
+    //tranUsuarioViewModel: UsuarioViewModel,
     screenObjetivo: String
 ) {
     val itemsNavBar= listOf(Screen.Ingreso, Screen.Camara, Screen.Registros, Screen.Perfil);

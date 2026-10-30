@@ -1,42 +1,49 @@
 package com.duoc.appandroidstudioproject.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.duoc.appandroidstudioproject.model.UsuarioErrores
+import androidx.lifecycle.viewModelScope
+import com.duoc.appandroidstudioproject.model.RegistroRack
 import com.duoc.appandroidstudioproject.model.Usuario
+import com.duoc.appandroidstudioproject.repository.UsuarioRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class UsuarioViewModel: ViewModel() {
-    private val _estado = MutableStateFlow(value= Usuario())
-    val estado:StateFlow<Usuario> = _estado
+class UsuarioViewModel(
+    private val repository: UsuarioRepository
+): ViewModel() {
+    val usuarios = MutableStateFlow< List<Usuario> >(emptyList())
+    val nombre = MutableStateFlow("")
+    val correo = MutableStateFlow("")
+    val clave = MutableStateFlow("")
 
-    fun onNombreChange(valor:String) {
-        _estado.update { it -> it.copy( nombre = valor, errores = it.errores.copy(nombre = null) ) }
+    init {
+        cargarUsuarios()
     }
 
-    fun onCorreoChange(valor:String) {
-        _estado.update { it -> it.copy( correo = valor, errores = it.errores.copy(correo = null) ) }
+    private fun  cargarUsuarios() {
+        viewModelScope.launch{ usuarios.value = repository.getAll() }
     }
 
-    fun onClaveChange(valor:String) {
-        _estado.update { it -> it.copy( clave = valor, errores = it.errores.copy(clave = null) ) }
+    fun agregarUsuario(usuario: Usuario) {
+        viewModelScope.launch {
+            repository.insert(usuario)
+            cargarUsuarios()
+        }
     }
 
+    fun actualizarUsuario(usuario: Usuario) {
+        viewModelScope.launch {
+            repository.update(usuario)
+            cargarUsuarios()
+        }
+    }
 
-    fun validarFormulario():Boolean {
-        val estadoActual = _estado.value
-        val errores = UsuarioErrores(
-            nombre = if (estadoActual.nombre.isBlank()) "-Error-" else null,
-            correo = if (!estadoActual.correo.contains(other = "@")) "-Error-" else null,
-            clave = if (estadoActual.clave.length < 6) "-Error-" else null,
-        )
-        val hayErrores:Boolean = listOfNotNull(
-            errores.nombre,
-            errores.correo,
-            errores.clave
-        ).isNotEmpty()
-        _estado.update { it -> it.copy(errores = errores) }
-        return !hayErrores
+    fun eliminarUsuario(usuario: Usuario) {
+        viewModelScope.launch {
+            repository.delete(usuario)
+            cargarUsuarios()
+        }
     }
 }
