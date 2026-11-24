@@ -5,6 +5,8 @@ import com.duoc.appandroidstudioproject.remote.RetrofitInstance
 
 class RackRepository {
 
-    suspend fun getAll(): List<RackModelo> = RetrofitInstance.api.getRacks()
+    suspend fun getAll(): List<RackModelo> {
+        return RetrofitInstance.api.getRacks()
+    }
 
 }
