@@ -1,5 +1,6 @@
 package com.duoc.appandroidstudioproject.remote
 
+import com.duoc.appandroidstudioproject.model.PostRackModelo
 import com.duoc.appandroidstudioproject.model.RackModelo
 import com.duoc.appandroidstudioproject.model.UsuarioModelo
 import retrofit2.http.Body
@@ -15,10 +16,10 @@ interface ApiService {
     suspend fun getRacks(): List<RackModelo>
 
     @GET("racks_por_usuario/{usuario_id}")
-    suspend fun getRacksPorUsuario(@Path(value = "usuario_id") id: Int)
+    suspend fun getRacksPorUsuario(@Path(value = "usuario_id") id: Int): List<RackModelo>
 
     @POST("racks_01")
-    suspend fun postRack(@Body rack: RackModelo): RackModelo
+    suspend fun postRack(@Body rack: PostRackModelo): RackModelo
 
     @PUT("racks_01/{id}")
     suspend fun putRack(
