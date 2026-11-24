@@ -42,26 +42,26 @@ import androidx.compose.material3.TextButton
 @Composable
 fun CamaraScreen(
     innerPadding: PaddingValues,
-    // Parámetros opcionales para no romper la llamada desde StartScreen
+
     onGuardarRegistro: (Bitmap, String, String, String) -> Unit = { _, _, _, _ -> }
 ) {
-    // 1. Memoria para la foto
+
     var fotoBitmap by remember { mutableStateOf<Bitmap?>(null) }
 
-    // Estados para editar los datos del Registro de Rack
+
     var mostrarDialogoRegistro by remember { mutableStateOf(false) }
     var codigoRack by remember { mutableStateOf("") }
     var ubicacion by remember { mutableStateOf("") }
     var observaciones by remember { mutableStateOf("") }
 
-    // 2. Lanzador de la cámara (igual al tuyo)
+
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicturePreview()
     ) { bitmap: Bitmap? ->
         fotoBitmap = bitmap
     }
 
-    // 3. Lanzador de permisos (igual al tuyo)
+
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
@@ -77,7 +77,7 @@ fun CamaraScreen(
             .padding(innerPadding)
     ) {
         if (fotoBitmap != null) {
-            // Muestra la foto capturada
+
             Image(
                 bitmap = fotoBitmap!!.asImageBitmap(),
                 contentDescription = "Foto del Rack",
@@ -85,7 +85,7 @@ fun CamaraScreen(
                 contentScale = ContentScale.Fit
             )
 
-            // Botones inferiores para Repetir o Ir a Registro
+
             Row(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
@@ -118,7 +118,7 @@ fun CamaraScreen(
                 modifier = Modifier.align(Alignment.Center)
             )
 
-            // Botón original de cámara (solo se muestra cuando aún no hay foto)
+
             IconButton(
                 onClick = { permissionLauncher.launch(android.Manifest.permission.CAMERA) },
                 modifier = Modifier
@@ -136,7 +136,7 @@ fun CamaraScreen(
             }
         }
 
-        // 4. Ventana emergente para editar los datos del Rack antes de enviar
+
         if (mostrarDialogoRegistro && fotoBitmap != null) {
             AlertDialog(
                 onDismissRequest = { mostrarDialogoRegistro = false },
