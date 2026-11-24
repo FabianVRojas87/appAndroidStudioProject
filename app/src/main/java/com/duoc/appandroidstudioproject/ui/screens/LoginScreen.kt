@@ -30,6 +30,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,6 +43,7 @@ import androidx.navigation.NavController
 import com.duoc.appandroidstudioproject.navigation.Screen
 import com.duoc.appandroidstudioproject.viewmodel.NavigationFlowViewModel
 import androidx.compose.ui.graphics.Color
+import com.duoc.appandroidstudioproject.R
 
 @Composable
 fun LoginScreen(
@@ -51,45 +53,47 @@ fun LoginScreen(
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
 
-    Surface(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp),
-        color = MaterialTheme.colorScheme.surface,
-        tonalElevation = 4.dp
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFFDBEAFE), // Azul cielo suave arriba
+                        Color(0xFFF8FAFC)  // Blanco hielo limpio abajo
+                    )
+                )
+            )
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFFF0F4F8))
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            /*
-            Image(
-                painter =,
-                contentDescription = "Sign-in illustration",
-                modifier = Modifier.size(120.dp),
-                contentScale = ContentScale.Fit
-            )
-             */
+        Image(
+            painter = painterResource(id = R.drawable.rack_suelo), // Cambia por el nombre de tu imagen en drawable
+            contentDescription = "Logo Infrascan Rack",
+            modifier = Modifier.size(110.dp),
+            contentScale = ContentScale.Fit
+        )
 
-            Text(
-                text = "Infrascan Rack",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF1E293B)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
+        Text(
+            text = "Infrascan Rack",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF1E293B)
+        )
 
-            Text(
-                text = "Registro de Personal",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color(0xFF2563EB)
-            )
-            Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(4.dp))
+
+        Text(
+            text = "Registro de Personal",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Medium,
+            color = Color(0xFF2563EB)
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
@@ -145,7 +149,7 @@ fun LoginScreen(
     }
 }
 }
-}
+
 fun validarLogin(email:String, pass:String, navigationFlowViewModel: NavigationFlowViewModel) {
     if(email=="admin@gmail.com" && pass=="infrascan") {
         navigationFlowViewModel.navigatePageTo(Screen.Start)
