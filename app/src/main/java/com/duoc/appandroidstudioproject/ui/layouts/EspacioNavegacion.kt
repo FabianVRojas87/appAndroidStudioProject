@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun EspacioNavegacion(
     tranRegistroRackViewModel:RegistroRackViewModel
-    //tranUsuarioViewModel: UsuarioViewModel
 ) {
     val originalNavController = rememberNavController()
     val navigationFlowViewModel: NavigationFlowViewModel = viewModel()
@@ -64,7 +63,6 @@ fun EspacioNavegacion(
             EspacioScaffold(
                 personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel,
                 tranRegistroRackViewModel=tranRegistroRackViewModel,
-                //tranUsuarioViewModel=tranUsuarioViewModel,
                 screenObjetivo=Screen.Start.route
             )
         }
@@ -72,7 +70,6 @@ fun EspacioNavegacion(
             EspacioScaffold(
                 personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel,
                 tranRegistroRackViewModel=tranRegistroRackViewModel,
-                //tranUsuarioViewModel=tranUsuarioViewModel,
                 screenObjetivo=Screen.Ingreso.route
             )
         }
@@ -80,7 +77,6 @@ fun EspacioNavegacion(
             EspacioScaffold(
                 personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel,
                 tranRegistroRackViewModel=tranRegistroRackViewModel,
-                //tranUsuarioViewModel=tranUsuarioViewModel,
                 screenObjetivo=Screen.Camara.route
             )
         }
@@ -88,7 +84,6 @@ fun EspacioNavegacion(
             EspacioScaffold(
                 personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel,
                 tranRegistroRackViewModel=tranRegistroRackViewModel,
-                //tranUsuarioViewModel=tranUsuarioViewModel,
                 screenObjetivo=Screen.Registros.route
             )
         }
@@ -96,7 +91,6 @@ fun EspacioNavegacion(
             EspacioScaffold(
                 personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel,
                 tranRegistroRackViewModel=tranRegistroRackViewModel,
-                //tranUsuarioViewModel=tranUsuarioViewModel,
                 screenObjetivo=Screen.RegistrosHistorial.route
             )
         }
@@ -104,7 +98,6 @@ fun EspacioNavegacion(
             EspacioScaffold(
                 personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel,
                 tranRegistroRackViewModel=tranRegistroRackViewModel,
-                //tranUsuarioViewModel=tranUsuarioViewModel,
                 screenObjetivo=Screen.RegistrosEditar.route
             )
         }
@@ -112,7 +105,6 @@ fun EspacioNavegacion(
             EspacioScaffold(
                 personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel,
                 tranRegistroRackViewModel=tranRegistroRackViewModel,
-                //tranUsuarioViewModel=tranUsuarioViewModel,
                 screenObjetivo=Screen.Perfil.route
             )
         }
@@ -120,7 +112,6 @@ fun EspacioNavegacion(
             EspacioScaffold(
                 personalNavController=originalNavController, navigationFlowViewModel=navigationFlowViewModel,
                 tranRegistroRackViewModel=tranRegistroRackViewModel,
-                //tranUsuarioViewModel=tranUsuarioViewModel,
                 screenObjetivo=Screen.PerfilEditar.route
             )
         }

@@ -15,6 +15,11 @@ class RackViewModel: ViewModel() {
     private val _lista_racks = MutableStateFlow< List<RackModelo> >(value = emptyList())
     val lista_racks: StateFlow< List<RackModelo> > = _lista_racks
 
+    val descripcion = MutableStateFlow("")
+    val es_aprobado = MutableStateFlow(false)
+    val direccion = MutableStateFlow("")
+    val modelo = MutableStateFlow("")
+
 
     init {
         obtenerRacks()
@@ -32,7 +37,7 @@ class RackViewModel: ViewModel() {
         }
     }
 
-    suspend fun agregarNuevoRack(descripcion: String, es_aprobado: Boolean, direccion: String, modelo: String, usuarios_01_id: Int) {
+    fun agregarNuevoRack(descripcion: String, es_aprobado: Boolean, direccion: String, modelo: String, usuarios_01_id: Int) {
         val nuevoRack: PostRackModelo = PostRackModelo(descripcion, es_aprobado, direccion, modelo, usuarios_01_id)
         viewModelScope.launch {
             repository.postRack(nuevoRack)

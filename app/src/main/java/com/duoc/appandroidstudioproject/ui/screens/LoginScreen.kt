@@ -1,6 +1,7 @@
 package com.duoc.appandroidstudioproject.ui.screens
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -42,14 +43,17 @@ import androidx.navigation.NavController
 import com.duoc.appandroidstudioproject.navigation.Screen
 import com.duoc.appandroidstudioproject.viewmodel.NavigationFlowViewModel
 import androidx.compose.ui.graphics.Color
+import com.duoc.appandroidstudioproject.viewmodel.UsuarioViewModel
 
 @Composable
 fun LoginScreen(
     personalNavController: NavController,
     navigationFlowViewModel: NavigationFlowViewModel = viewModel(),
+    usuarioViewModel: UsuarioViewModel = viewModel()
 ) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
+    var aceptado by rememberSaveable { mutableStateOf(true) }
 
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -102,52 +106,59 @@ fun LoginScreen(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ){
 
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("Ingrese su correo") },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
-                singleLine = true,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = Color(0xFF2563EB),
-                    focusedLabelColor = Color(0xFF2563EB)
-                )
-            )
-            OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
-                label = { Text("Ingrese su contraseña") },
-                visualTransformation = PasswordVisualTransformation(),
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
-                singleLine = true,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = Color(0xFF2563EB),
-                    focusedLabelColor = Color(0xFF2563EB)
-                )
-            )
-            Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        label = { Text("Ingrese su correo") },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(12.dp),
+                        singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Color(0xFF2563EB),
+                            focusedLabelColor = Color(0xFF2563EB)
+                        )
+                    )
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { password = it },
+                        label = { Text("Ingrese su contraseña") },
+                        visualTransformation = PasswordVisualTransformation(),
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(12.dp),
+                        singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Color(0xFF2563EB),
+                            focusedLabelColor = Color(0xFF2563EB)
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
 
 
 
-            Button(
-                onClick = { validarLogin(email = email, pass = password, navigationFlowViewModel = navigationFlowViewModel) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(52.dp),
-                enabled = email.isNotBlank() && password.isNotBlank(),
-                shape = RoundedCornerShape(14.dp)
-            ) {
-                Text("Conectarse")
+                    Button(
+                        onClick = {
+                            //Log.d("Login", "Credenciales correctas: ${usuarioViewModel.validarCredenciales(email, password)}")
+                            if( usuarioViewModel.validarCredenciales(email, password) ) {
+                                navigationFlowViewModel.navigatePageTo(Screen.Start)
+                            }else{
+                                aceptado = false
+                            }
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(52.dp),
+                        enabled = email.isNotBlank() && password.isNotBlank(),
+                        shape = RoundedCornerShape(14.dp)
+                    ) {
+                        if(aceptado){
+                            Text("Conectarse")
+                        }else{
+                            Text("CREDENCIALES INCORRECTAS")
+                        }
+
+                    }
+                }
             }
         }
-    }
-}
-}
-}
-fun validarLogin(email:String, pass:String, navigationFlowViewModel: NavigationFlowViewModel) {
-    if(email=="admin@gmail.com" && pass=="infrascan") {
-        navigationFlowViewModel.navigatePageTo(Screen.Start)
     }
 }

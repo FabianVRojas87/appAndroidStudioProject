@@ -32,8 +32,6 @@ class MainActivity : ComponentActivity() {
     }
     private val appRegistroRackRepository by lazy { RegistroRackRepository(db.registroRackDao()) }
     private val viewModelRegistrosRack by lazy { RegistroRackViewModel(appRegistroRackRepository) }
-    //private val appUsuarioRepository by lazy { UsuarioRepository(db.usuarioDao()) }
-    //private val viewModelUsuario by lazy { UsuarioViewModel(appUsuarioRepository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +40,6 @@ class MainActivity : ComponentActivity() {
             AppAndroidStudioProjectTheme {
                 EspacioNavegacion(
                     tranRegistroRackViewModel = viewModelRegistrosRack
-                    //tranUsuarioViewModel = viewModelUsuario
                 )
             }
         }
