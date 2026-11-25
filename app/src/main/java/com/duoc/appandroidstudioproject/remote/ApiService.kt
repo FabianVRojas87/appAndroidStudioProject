@@ -1,6 +1,7 @@
 package com.duoc.appandroidstudioproject.remote
 
 import com.duoc.appandroidstudioproject.model.PostRackModelo
+import com.duoc.appandroidstudioproject.model.PostUsuarioModelo
 import com.duoc.appandroidstudioproject.model.RackModelo
 import com.duoc.appandroidstudioproject.model.UsuarioModelo
 import retrofit2.http.Body
@@ -36,7 +37,7 @@ interface ApiService {
     suspend fun getUsuarios(): List<UsuarioModelo>
 
     @POST("usuarios_01")
-    suspend fun postUsuario(@Body usuario: UsuarioModelo): UsuarioModelo
+    suspend fun postUsuario(@Body usuario: PostUsuarioModelo): UsuarioModelo
 
     @PUT("usuarios_01/{id}")
     suspend fun putUsuario(

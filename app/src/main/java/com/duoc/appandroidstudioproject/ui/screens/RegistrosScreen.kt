@@ -41,9 +41,7 @@ fun RegistrosScreen(
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            exec_lista_racks.forEach { eleRack ->
-                Accordion( elementoRack = eleRack )
-            }
+            exec_lista_racks.forEach { eleRack -> Accordion( elementoRack = eleRack ) }
         }
 
         Button(

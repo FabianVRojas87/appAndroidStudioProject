@@ -17,8 +17,6 @@ data class RackModelo(
 
     val modelo: String,
 
-    val fecha: LocalDate,
-
     //@SerializedName(value = "usuarios_01_id")
     val usuarios_01_id: Int,
 )
@@ -28,6 +26,5 @@ data class PostRackModelo(
     val es_aprobado: Boolean,
     val direccion: String,
     val modelo: String,
-    val fecha: LocalDate,
     val usuarios_01_id: Int,
 )

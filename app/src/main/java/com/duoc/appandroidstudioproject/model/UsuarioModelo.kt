@@ -12,3 +12,10 @@ data class UsuarioModelo(
 
     val contrasenna: String
 )
+
+data class PostUsuarioModelo(
+    val nombre:String,
+    val correo:String,
+    val telefono:Int,
+    val contrasena:String
+)
